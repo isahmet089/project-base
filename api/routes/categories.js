@@ -44,12 +44,7 @@ router.post("/update", async (req, res) => {
   let body = req.body;
   try {
     let updates = {};
-    if (!body._id)
-      throw new CustomError(
-        Enum.HTTP_CODES.BAD_REQUEST,
-        "Validation Error!",
-        "id field must be filled"
-      );
+    if (!body._id)throw new CustomError(Enum.HTTP_CODES.BAD_REQUEST,"Validation Error!","id field must be filled");
     if (body.name) updates.name = body.name;
     if (typeof body.is_active === "boolean") updates.is_active = body.is_active;
     await Categories.updateOne({ _id: body._id }, updates);
